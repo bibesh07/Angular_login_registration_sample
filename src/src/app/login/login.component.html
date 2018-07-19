@@ -1,0 +1,34 @@
+<form class="card" (ngSubmit)='f.form.valid && onSubmit()' #f="ngForm" novalidate>
+  <fieldset>
+    <legend> Login </legend>
+    <div class="col-md-12">
+      <label class="form-label">Email </label>
+      <input name="email"  class="form-control" [(ngModel)]="model.email" [ngModel]="model.email" [ngClass]="{'is-invalid': f.submitted && email.invalid}" #email="ngModel" required email/>
+      <div *ngIf="email.invalid && f.submitted" class="invalid-feedback">
+        <div *ngIf="email?.errors.required">
+            The email field is required
+        </div>
+        <div *ngIf="email?.errors.email">
+            Please enter a valid email
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <label class="form-label">Password </label>
+      <input name="password"  class="form-control" [(ngModel)]="model.password" [ngModel]="model.password" [ngClass]="{'is-invalid': f.submitted && password.invalid}" #password="ngModel" required type="password"/>
+      <div *ngIf="password.invalid && f.submitted" class="invalid-feedback">
+        <div *ngIf="password?.errors.required">
+            The password field is required
+        </div>
+      </div>
+    </div>
+    <br/>
+    <button class="btn btn-success" > Submit </button> 
+    <a (click)="sharedServices?.goBack();" class="btn btn-secondary"> Back </a>
+    <button type="button" class="btn btn-outline-secondary mr-2 btn-xs" placement="right"
+        ngbPopover="Email: bibesh@gmail.com   Password: password" popoverTitle="Email & password Information">
+  Click me for details
+</button>
+
+  </fieldset> 
+</form>

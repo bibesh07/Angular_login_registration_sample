@@ -1,0 +1,57 @@
+<form class="card" (ngSubmit)='f.form.valid && onSubmit()' #f="ngForm" novalidate>
+	<fieldset>
+		<legend> {{title}} </legend>
+		<div class="col-md-6">
+			<label class="form-label">Fullname </label>
+			<input name="name" class="form-control" [(ngModel)]="model.name" [ngClass]="{'is-invalid': f.submitted && name.invalid}"
+			 #name="ngModel" required/>
+			<div *ngIf="name.invalid && f.submitted" class="invalid-feedback">
+				<div *ngIf="name?.errors.required">
+					The name field is required
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<label class="form-label">Username </label>
+			<input name="username" class="form-control" [(ngModel)]="model.username" [ngClass]="{'is-invalid': f.submitted && username.invalid}"
+			 #username="ngModel" required maxlength="6" />
+			<div *ngIf="username.invalid && f.submitted" class="invalid-feedback">
+				<div *ngIf="username?.errors.required">
+					The username field is required
+				</div>
+				<div *ngIf="username?.errors.maxlength">
+					Please enter a shorter username
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<label class="form-label">Email </label>
+			<input name="email" class="form-control" [(ngModel)]="model.email" [ngClass]="{'is-invalid': f.submitted && email.invalid}"
+			 #email="ngModel" required email/>
+			<div *ngIf="email.invalid && f.submitted" class="invalid-feedback">
+				<div *ngIf="email?.errors.required">
+					The email field is required
+				</div>
+				<div *ngIf="email?.errors.email">
+					Please enter a valid email
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<label class="form-label">Password </label>
+			<input name="password" class="form-control" [(ngModel)]="model.password" [ngClass]="{'is-invalid': f.submitted && password.invalid}"
+			 #password="ngModel" required type="password" minlength="6" />
+			<div *ngIf="password.invalid && f.submitted" class="invalid-feedback">
+				<div *ngIf="password?.errors.required">
+					The password field is required
+				</div>
+				<div *ngIf="password?.errors.minlength">
+					Password must be minimum of 6 digits
+				</div>
+			</div>
+		</div>
+		<br/>
+		<button type="submit" class="btn btn-success"> Register </button>
+		<a (click)="sharedServices?.goBack();" class="btn btn-secondary"> Back </a>
+	</fieldset>
+</form>
